@@ -31,14 +31,3 @@ A collection of Terraform modules and configurations for managing AWS infrastruc
 
 - [Terraform](https://www.terraform.io/downloads.html)
 - AWS CLI configured with appropriate credentials
-
-## Usage
-
-Example usage in your Terraform configuration:
-
-```hcl
-module "example" {
-  source = "./modules/example"
-  # module variables
-}
-```
