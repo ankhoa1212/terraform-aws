@@ -25,6 +25,8 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
     
     - name: Build and push Docker image
+      context: ./ecs-web-app # Specify the build context (directory containing the Dockerfile)
+      file: ./ecs-web-app/Dockerfile # Specify path to Dockerfile
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: hello-world-app
