@@ -30,4 +30,4 @@ A collection of Terraform modules and configurations for managing AWS infrastruc
 ## Requirements
 
 - [Terraform](https://www.terraform.io/downloads.html)
-- AWS CLI configured with appropriate credentials
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
