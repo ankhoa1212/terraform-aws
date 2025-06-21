@@ -88,7 +88,7 @@ resource "aws_route_table_association" "a" {
 
 # 5. Create a CloudWatch Log Group for VPC Flow Logs
 resource "aws_cloudwatch_log_group" "lab_log_group" {
-  name              = "Lab-Log-Group"
+  name              = "/aws/lambda/Lab-Log-Group"
   retention_in_days = 0 # 0 means "Never expire"
 }
 
