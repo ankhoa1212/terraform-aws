@@ -31,3 +31,7 @@ A collection of Terraform modules and configurations for managing AWS infrastruc
 
 - [Terraform](https://www.terraform.io/downloads.html)
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
+
+## Useful Links
+
+- [Terraform AWS Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
