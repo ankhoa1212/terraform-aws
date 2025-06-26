@@ -23,3 +23,7 @@ variable "key_name" {
   type        = string
   default     = "web-server"
 }
+variable "vpc_id" {
+  description = "VPC ID where the app tier will be deployed"
+  type        = string
+}

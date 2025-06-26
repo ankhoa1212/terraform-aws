@@ -1,5 +1,4 @@
-# Web ALB Security Group
-# Web ALB Security Group
+# Security Groups for the VPC
 resource "aws_security_group" "web_alb" {
   name        = "web-alb-sg"
   description = "Allow HTTP inbound traffic to Web ALB"
@@ -24,7 +23,6 @@ resource "aws_security_group" "web_alb" {
   }
 }
 
-# Web Instance Security Group
 resource "aws_security_group" "web_instance" {
   name        = "web-instance-sg"
   description = "Allow HTTP from Web ALB, all outbound"
@@ -49,7 +47,6 @@ resource "aws_security_group" "web_instance" {
   }
 }
 
-# App ALB Security Group
 resource "aws_security_group" "app_alb" {
   name        = "app-alb-sg"
   description = "Allow HTTP/App traffic from Web instances"
@@ -87,6 +84,13 @@ resource "aws_security_group" "app_instance" {
     security_groups = [aws_security_group.app_alb.id] # Only allow traffic from the App ALB
   }
 
+  ingress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.bastion.id] # Allow SSH from Bastion host
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -121,5 +125,25 @@ resource "aws_security_group" "database" {
 
   tags = {
     Name = "db-sg"
+  }
+}
+
+resource "aws_security_group" "bastion" {
+  name        = "bastion_sg"
+  description = "Allow SSH Inbound Traffic From Set IP"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.access_ip]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }

@@ -18,3 +18,7 @@ variable "azs" {
   description = "List of availability zones"
   type        = list(string)
 }
+variable "access_ip" {
+  description = "IP address or CIDR block for access control"
+  type        = string
+}
