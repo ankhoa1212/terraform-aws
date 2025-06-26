@@ -16,7 +16,11 @@ resource "aws_launch_template" "app" {
     security_groups = [var.app_instance_sg_id]
   }
 
-  user_data = base64encode("install_mysql.sh")
+  user_data = base64encode(<<-EOF
+              #!/bin/bash
+              sudo yum install mysql -y
+              EOF
+              )
 }
 
 resource "aws_autoscaling_group" "app" {

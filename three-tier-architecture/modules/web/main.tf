@@ -16,7 +16,14 @@ resource "aws_launch_template" "web" {
     security_groups = [var.web_instance_sg_id]
   }
 
-  user_data = base64encode("install_apache.sh")
+  user_data = base64encode(<<-EOF
+              #!/bin/bash
+              sudo yum update -y
+              sudo yum install -y httpd
+              sudo systemctl start httpd
+              sudo systemctl enable httpd
+              EOF
+              )
 }
 
 resource "aws_autoscaling_group" "web" {
